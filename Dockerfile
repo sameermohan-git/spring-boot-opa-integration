@@ -1,4 +1,4 @@
-FROM isahl/openjdk17
+FROM eclipse-temurin:17
 RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
 ARG DEPENDENCY=build/dependency
