@@ -1,0 +1,20 @@
+version: '1.0'
+services:
+  opa-auth-agent:
+    image: openpolicyagent/opa:latest
+    command:
+      - "run"
+      - "--server"
+      - "--log-format=json-pretty"
+      - "--set=decision_logs.console=true"
+    ports:
+      - '8181:8181'
+  api-server:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - OPA_ADDR=http://opa-auth-agent:8181/v1/policies/opaweb/authz
+      - POLICY_PATH=/v1/policies/opaweb/authz
+    depends_on:
+      - opa-auth-agent
