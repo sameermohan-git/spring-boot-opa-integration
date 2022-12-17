@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "06e06f8c-be94-4201-bd9a-200503925706",
+		"name": "OPA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20541519"
+	},
+	"item": [
+		{
+			"name": "GET Spring OPA App",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "john",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "john",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic 2FtZWVyOmEuNnFXVERjQkxhNUZiTWlUSi40Qlk5b2RpN3VyUWF6dQo=",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/hello",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT OPA Policy",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": " text/plain",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/Users/sameer-macair/eclipse-workspace/spring-boot-opa-integration/opa/opaweb-policy.rego"
+					}
+				},
+				"url": {
+					"raw": "localhost:8181/v1/policies/opaweb/authz",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"v1",
+						"policies",
+						"opaweb",
+						"authz"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
