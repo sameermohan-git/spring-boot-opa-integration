@@ -1,6 +1,10 @@
 # spring-boot-opa-integration
 This project covers integration needed between sample spring boot application and OPA (Open Policy Agent)
 
+#Project Dependencies
+- OpenJDK 17
+- Spring Boot 3.0
+
 #OPA Build Steps
 1. Pull latest OPA image in docker desktop
 2. Run container
