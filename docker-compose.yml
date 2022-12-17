@@ -14,7 +14,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - OPA_ADDR=http://opa-auth-agent:8181/v1/policies/opaweb/authz
+      - OPA_ADDR=http://opa-auth-agent:8181/v1/data/opaweb/authz/allow
       - POLICY_PATH=/v1/policies/opaweb/authz
     depends_on:
       - opa-auth-agent
