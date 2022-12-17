@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -26,23 +28,25 @@ public class WebSecurityConfiguration {
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
     	List<UserDetails> users = new ArrayList<>();
-        UserDetails admin = User.withDefaultPasswordEncoder()
-            .username("sameer")
-            .password("password")
+        UserDetails admin = User.withUsername("sameer")
+            .password(passwordEncoder().encode("sameer"))
             .roles("ADMIN")
             .build();
         users.add(admin);
         
-        UserDetails user = User.withDefaultPasswordEncoder()
-                .username("John")
-                .password("password")
+        UserDetails user = User.withUsername("john")
+                .password(passwordEncoder().encode("john"))
                 .roles("USER")
                 .build();
             users.add(user);
         return new InMemoryUserDetailsManager(users);
     }
 
-
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 

@@ -67,7 +67,7 @@ public class OPADecisionManager implements AuthorizationManager<RequestAuthoriza
 			LOGGER.info("OPADataResponse: "+ response);
 
 			if (!response.getResult()) {
-				LOGGER.info("OPADataResponse Result Negative: "+ response);
+				LOGGER.info("OPADataResponse Result Negative: "+ response.getResult());
 				return new AuthorizationDecision(false);
 			}
 			LOGGER.info("OPADataResponse Result Positive: "+ response.getResult());
